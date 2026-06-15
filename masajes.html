@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Massage Lanzarote - Masajes y Servicios</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        /* Variables de color basadas en la imagen y marca */
+        :root {
+            --color-primary: #d28b52;      /* Arena / Dorado Cálido */
+            --color-primary-dark: #b8733a; /* Dorado Intenso */
+            --color-bg-light: #faf6f0;     /* Fondo Crema Suave */
+            --color-bg-accent: #fceae6;    /* Fondo Salmón/Rosado Pastel */
+            --color-text-dark: #4a4341;    /* Gris Orgánico Oscuro */
+            --color-text-muted: #7a706e;   /* Gris Suave */
+            --color-white: #ffffff;
+            --font-main: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Estructura Base y Secciones */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--color-text-dark);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* HÉROE (BANNER PRINCIPAL) */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            min-height: 350px;
+            background: linear-gradient(rgba(40, 35, 33, 0.5), rgba(40, 35, 33, 0.35)), 
+                        url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 2rem;
+            color: var(--color-bg-accent);
+            margin-top: 10px;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+        }
+
+        /* TEXTO INTRODUCTORIO */
+        .intro-text {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* CUADRÍCULA DE SERVICIOS / MASAJES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: var(--color-white);
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-top: 4px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(210, 139, 82, 0.12);
+            border-top-color: var(--color-primary);
+        }
+
+        .service-info h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--color-text-dark);
+            font-weight: 400;
+        }
+
+        .service-info p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f3ece4;
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        .service-duration {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .service-duration svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--color-primary);
+        }
+
+        .service-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+        }
+
+        /* BOTÓN DE RESERVA INFERIOR */
+        .cta-section {
+            text-align: center;
+            background-color: var(--color-white);
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin: 40px auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .btn-booking {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 15px rgba(210, 139, 82, 0.3);
+        }
+
+        .btn-booking:hover {
+            background-color: var(--color-primary-dark);
+            transform: scale(1.02);
+        }
+
+        .btn-booking svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        /* PIE DE PÁGINA (FOOTER) */
+        footer {
+            background-color: #2e2928;
+            color: #d1c7c5;
+            padding: 50px 20px 20px 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid #4a4341;
+            padding-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--color-white);
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col a {
+            color: #d1c7c5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a svg {
+            width: 24px;
+            height: 24px;
+            fill: #d1c7c5;
+            transition: fill 0.3s;
+        }
+
+        .social-links a:hover svg {
+            fill: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #8c817f;
+        }
+
+        .link-cel {
+            color: #8c817f !important;
+            text-decoration: none !important;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .link-cel:hover {
+            color: var(--color-primary) !important;
+        }
+
+        .price-notice {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-top: -20px;
+            margin-bottom: 40px;
+        }
+
+        /* Adaptabilidad Móvil Extrema */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; letter-spacing: 2px; }
+            .hero-subtitle { font-size: 1.4rem; }
+            .hero { height: 40vh; min-height: 280px; }
+            .section-title { font-size: 1.8rem; }
+            .services-grid { grid-template-columns: 1fr; gap: 20px; }
+            .cta-section { padding: 35px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero animate-fade-in">
+        <div class="hero-content">
+            <h1 class="hero-title">Nuestros Masajes</h1>
+            <div class="hero-subtitle">Just Massage Lanzarote</div>
+        </div>
+    </div>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
+        
+        <section class="animate-fade-up delay-1">
+            <h2 class="section-title">Servicios de Masajes en Lanzarote</h2>
+            <div class="section-subtitle">Bienestar a tu alcance</div>
+            <p class="intro-text">
+                Conoce todos los servicios que ofrece <strong>Just Massage Lanzarote</strong> para tu bienestar. A continuación verás listados los diferentes tipos de masaje que podemos realizar en la comodidad de tu casa, hotel o donde lo necesites. Nos movemos por toda la isla de Lanzarote para ofrecerte nuestro mejor servicio.
+            </p>
+        </section>
+
+        <div class="price-notice animate-fade-up delay-1">
+            * El precio del servicio podría incrementarse en 5€ por suplemento de desplazamiento en función de la distancia de la localización.
+        </div>
+
+        <section class="animate-fade-up delay-2" style="padding-top: 0;">
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Relajante</h3>
+                        <p>Destinado a mejorar el bienestar del cuerpo mediante movimientos suaves y lentos, relaja, repara, mejora al sueño y ayuda a paliar los dolores tensionales.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Deportivo</h3>
+                        <p>Prepara el cuerpo para el entrenamiento/competición o lo recupera tras el esfuerzo, y ayuda a prevenir lesiones. El preparatorio optimiza la elasticidad de los tejidos, mejora la circulación y por tanto la energía, y elimina adherencias, mientras el de recuperación drena desechos, reduce el tono muscular y espasmos, y genera descanso y ligereza.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Descontracturante</h3>
+                        <p>Algo más fuerte y profundo, es empleado para eliminar las contracturas musculares producidas por estrés, malas posturas, cansancio o vida sedentaria, y normalizar el tono muscular.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Deep Tissue</h3>
+                        <p>Masaje de tejido profundo para penetrar por debajo de las capas superficiales del músculo, por lo que es indicado para tratar problemas crónicos musculares y restricciones o tirantez muscular. Debido a que libera gran tensión muscular acumulada es muy adecuado para personas con situaciones de estrés a largo tiempo o también para atletas.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Reflexología Podal</h3>
+                        <p>Es un masaje basado en la estimulación de puntos sobre los pies denominados zonas de reflejo, los cuales corresponden a distintas partes del cuerpo. Definitivamente nos ayuda con síntomas y dolencias, pero además obtendrás como primer beneficio el alivio del dolor y cansancio de tus pies.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Tailandés</h3>
+                        <p>Masaje fuerte, profundo e intenso, sin aceite y a base de presiones y estiramientos pasivos que recuerdan distintas posturas de yoga, por lo que el cliente debe llevar ropa cómoda durante la sesión. Su objetivo es liberar tensiones del cuerpo y ayudar a que este se autorregule por si solo encontrando la armonía.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Hindú</h3>
+                        <p>Proveniente del Ayurveda, es un masaje aplicado con mucho aceite y movimientos envolventes que recorren el cuerpo, pudiendo ser sedante y suave o vigoroso y activador. Elimina toxinas, estimula el sistema linfático, purifica el organismo, rejuvenece y mantiene la salud cuerpo y mente.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Hawaiano</h3>
+                        <p>También llamado masaje Lomi-Lomi, es suave y rítmico pero firme y controlado a la vez, y utiliza tanto las manos como los antebrazos para abarcar zonas extensas del cuerpo con movimientos armónicos y agradables. Su objetivo es relajar el sistema nervioso, aumentar la circulación y crear bienestar.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Drenaje Linfático</h3>
+                        <p>Es un masaje suave, ligero y muy lento, aplicado sobre el sistema linfático para movilizar los líquidos del organismo y favorecer la eliminación de las sustancias de desecho. Actúa sobre la retención de líquidos, celulitis, circulación, piernas cansadas, reduce la inflamación, mejora las defensas y tiene una acción sedante.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje Anticelulítico</h3>
+                        <p>Es un masaje muy fuerte y rápido con el objetivo de fragmentar la grasa y eliminarla, por lo que nos ayuda a prevenir y tratar la celulitis. Se emplea crema anticelulítica para mayores resultados de firmeza, elasticidad y suavidad de la piel.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">55€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje para Dos</h3>
+                        <p>Escoge el tipo de masaje que te gusta y disfruta esta gratificante experiencia en sintonía con la persona que desees, ya sea tu pareja, familia o amigo.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">110€*</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Masaje a Cuatro Manos</h3>
+                        <p>Masaje espectacular realizado por dos masajistas perfectamente sincronizados para dar una sensación única donde el masaje es a ratos simétrico realizando ambos los mismos movimientos, y a ratos dedicándose cada uno de ellos a una zona concreta. Especialmente indicado para problemas de estrés, insomnio y ansiedad, se trata definitivamente de una experiencia inolvidable que no te puedes perder.</p>
+                    </div>
+                    <div class="service-meta">
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <span>60 min</span>
+                        </div>
+                        <div class="service-price">110€*</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cta-section animate-fade-up">
+            <h2 class="section-title">¿Listo para tu sesión de bienestar?</h2>
+            <div class="section-subtitle">Reserva de forma rápida y cómoda</div>
+            <p style="max-width: 700px; margin: 0 auto 30px auto; color: var(--color-text-muted);">
+                Puedes solicitar cualquiera de nuestros masajes directamente a través de WhatsApp. Cuéntanos qué servicio deseas, el día y la localización en Lanzarote y prepararemos todo para tu momento de paz.
+            </p>
+            <a href="https://api.whatsapp.com/send/?phone=34722775959&text=Me+gustar%C3%ADa+reservar+un+masaje%2C+mi+nombre+es&type=phone_number&app_absent=0" target="_blank" class="btn-booking">
+                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                <span>Reservar por WhatsApp</span>
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Just Massage</h4>
+                <p>Llevamos años liderando el sector del bienestar y la terapia corporal en Lanzarote, colaborando firmemente con el sector hotelero local.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/justmassagelanzarote/" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/justmassagelanzarote/?locale=es_ES" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contacto Directo</h4>
+                <p><strong>Número de contacto:</strong> <a href="https://api.whatsapp.com/send/?phone=34722775959&text=Me+gustar%C3%ADa+reservar+un+masaje%2C+mi+nombre+es&type=phone_number&app_absent=0">722 77 59 59</a></p>
+                <p><strong>Email:</strong> <a href="mailto:justmassagelanzarote@gmail.com">justmassagelanzarote@gmail.com</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Enlaces Útiles</h4>
+                <p><a href="https://share.google/bHoMtFAOHpT6v0LFh" target="_blank">📍 Reseñas de Google</a></p>
+                <p><a href="https://sites.google.com/view/justmassagelanzarote/spa" target="_blank">💆 Servicios en Spas</a></p>
+                <p><a href="https://sites.google.com/view/justmassagelanzarote/a-domicilio" target="_blank">🚗 Masajes a Domicilio</a></p>
+                <p><a href="https://sites.google.com/view/justmassagelanzarote/convenios" target="_blank">🏢 Convenios para Hoteles</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; Just Massage Lanzarote. Todos los derechos reservados.
+        </div>
+        <div class="footer-bottom">
+            <a href="https://proyectoscel.com/proyecto-digitalizacion/" target="_blank" class="link-cel">Web impulsada por la CEL</a>
+        </div>
+    </footer>
+
+</body>
+</html>
