@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just Massage Lanzarote - Quiénes Somos</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap');
 
         /* Variables de color basadas en la imagen y marca */
         :root {
@@ -214,6 +214,61 @@
             line-height: 1.6;
         }
 
+        /* SECCIÓN DE OPINIONES / TESTIMONIOS (AÑADIDA) */
+        .reviews-section {
+            background-color: var(--color-white);
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin: 40px auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .review-card {
+            background: var(--color-bg-light);
+            padding: 30px 25px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 3px solid var(--color-primary);
+        }
+
+        .review-stars {
+            color: #ffb400; /* Color dorado para las estrellas de Google */
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .review-author {
+            font-size: 0.9rem;
+            color: var(--color-primary-dark);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .review-platform {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-align: right;
+            margin-top: 2px;
+        }
+
         /* 5. PIE DE PÁGINA (FOOTER) */
         footer {
             background-color: #2e2928;
@@ -301,7 +356,7 @@
             .hero { height: 40vh; }
             .intro-main-text { font-size: 1.1rem; line-height: 1.7; }
             .section-title { font-size: 1.8rem; }
-            .about-section { padding: 30px 20px; }
+            .about-section, .reviews-section { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -349,6 +404,79 @@
                 <div class="about-feature">
                     <h4>Dedicación Total</h4>
                     <p>Ponemos toda nuestra pasión y atención en cada masaje para superar con creces las expectativas de nuestros clientes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section animate-fade-up delay-3">
+            <h2 class="section-title">Opiniones de nuestros clientes</h2>
+            <div class="section-subtitle">La experiencia Just Massage en palabras reales</div>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Un excelente servicio a domicilio, sin palabras, uno de los mejores masajes de mi vida. La terapeuta vino a mi hotel, una auténtica profesional. Viene con una camilla y cargada con todo lo necesario, te asesora y hace una valoración de tus necesidades. 100% recomendable."</p>
+                    </div>
+                    <div>
+                        <div class="review-author">Jennifer Fernández</div>
+                        <div class="review-platform">Reseña de Google</div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Un auténtico lujazo. Me di un masaje y me gustó bastante, me dejó como nuevo. Viene con todo el material necesario para dar el masaje. Es una comodidad los masajes a domicilio y encima bastante bien de precio. ¡Repetiré y lo recomiendo!"</p>
+                    </div>
+                    <div>
+                        <div class="review-author">Elias Etxaburu</div>
+                        <div class="review-platform">Reseña de Google</div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Ayer nos dimos un capricho por nuestro aniversario y contratamos un masaje en pareja. Vinieron a nuestro hotel equipados con sus camillas y todo lo necesario y nos dieron un masaje de una hora maravilloso. Yo me di el descontracturante y hoy estoy como nueva."</p>
+                    </div>
+                    <div>
+                        <div class="review-author">Zuribostaxola</div>
+                        <div class="review-platform">Reseña de Google</div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Fantástica experiencia. Tenía ganas de probar por la comodidad de recibir el masaje en casa y quedarte luego relajado. La terapeuta me atendió con amabilidad y profesionalidad. El masaje según mis necesidades musculares, intenso pero placentero. Volveré."</p>
+                    </div>
+                    <div>
+                        <div class="review-author">Manuel García de la Parra</div>
+                        <div class="review-platform">Reseña de Google</div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Mira que estoy acostumbrado a masajes, INCREÍBLE EXPERIENCIA, muy profesionales. Solicitamos masajes en pareja, relajante para mi mujer y descontracturante para mí y no podemos estar más agradecidos. Super relax y hasta la última contractura. Contentísimos con el servicio! sin duda volveremos a solicitarlo, RECOMENDADO!!!"</p>
+                    </div>
+                    <div>
+                        <div class="review-author">Jesús BD</div>
+                        <div class="review-platform">Reseña de Google</div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Tuve la suerte de disfrutar de sus servicios durante mi estancia en Lanzarote. Muy recomendable: masaje perfecto, profesionales cualificados, trato excelente, seriedad, limpieza... Cuidan hasta el último detalle. Repetiré. Muchas gracias!!!"</p>
+                    </div>
+                    <div>
+                        <div class="review-author">Agustín Navarro</div>
+                        <div class="review-platform">Reseña de Google</div>
+                    </div>
                 </div>
             </div>
         </section>
