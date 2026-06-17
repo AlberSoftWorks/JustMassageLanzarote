@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Massage Lanzarote - Contact Us</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        /* Color variables based on image and brand */
+        :root {
+            --color-primary: #d28b52;      /* Sand / Warm Gold */
+            --color-primary-dark: #b8733a; /* Deep Gold */
+            --color-bg-light: #faf6f0;     /* Soft Cream Background */
+            --color-bg-accent: #fceae6;    /* Salmon / Soft Pink Pastel */
+            --color-text-dark: #4a4341;    /* Dark Organic Gray */
+            --color-text-muted: #7a706e;   /* Soft Gray */
+            --color-white: #ffffff;
+            --font-main: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        /* Base Structure and Sections */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--color-text-dark);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* 1. HERO (MAIN BANNER) */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            min-height: 300px;
+            background: linear-gradient(rgba(40, 35, 33, 0.45), rgba(40, 35, 33, 0.3)), 
+                        url('https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 2.5rem;
+            color: var(--color-bg-accent);
+            margin-top: 10px;
+            margin-bottom: 0;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+        }
+
+        /* 2. BALANCED TWO-COLUMN LAYOUT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        /* Left Block: Information Channels */
+        .contact-info-block {
+            background-color: var(--color-white);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-channel {
+            margin-bottom: 35px;
+        }
+
+        .info-channel:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-channel h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .info-channel p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .info-channel a {
+            color: var(--color-text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .info-channel a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Right Block: Decorative with Schedule and Quick FAQs */
+        .contact-decor-block {
+            background-color: var(--color-white);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .decor-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--color-text-dark);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-bg-accent);
+            padding-bottom: 10px;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+        }
+
+        .schedule-row strong {
+            color: var(--color-text-dark);
+        }
+
+        .faq-mini {
+            margin-top: 30px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+        }
+
+        .faq-item h4 {
+            font-size: 0.95rem;
+            color: var(--color-primary-dark);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* 3. LOCAL MAP SECTION */
+        .map-section {
+            background-color: var(--color-white);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            overflow: hidden;
+        }
+
+        .map-container {
+            position: relative;
+            padding-bottom: 45vh; /* Responsive ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* 4. FOOTER */
+        footer {
+            background-color: #2e2928;
+            color: #d1c7c5;
+            padding: 50px 20px 20px 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid #4a4341;
+            padding-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--color-white);
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col a {
+            color: #d1c7c5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a svg {
+            width: 24px;
+            height: 24px;
+            fill: #d1c7c5;
+            transition: fill 0.3s;
+        }
+
+        .social-links a:hover svg {
+            fill: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #8c817f;
+        }
+
+        .link-cel {
+            color: #8c817f !important;
+            text-decoration: none !important;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .link-cel:hover {
+            color: var(--color-primary) !important;
+        }
+
+        /* Mobile Adaptability */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; letter-spacing: 2px; }
+            .hero-subtitle { font-size: 1.6rem; }
+            .hero { height: 350px; }
+            .section-title { font-size: 1.8rem; }
+            .contact-grid { gap: 25px; }
+            .contact-info-block, .contact-decor-block { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HERO BANNER -->
+    <div class="hero animate-fade-in">
+        <div class="hero-content">
+            <h1 class="hero-title">Contact</h1>
+            <div class="hero-subtitle">At your service</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
+        
+        <section class="animate-fade-up delay-1">
+            <h2 class="section-title">Let's Talk</h2>
+            <div class="section-subtitle">Resolve your doubts directly</div>
+            
+            <div class="contact-grid">
+                
+                <!-- COLUMN 1: STRATEGIC CHANNELS -->
+                <div class="contact-info-block">
+                    <div class="info-channel">
+                        <h3>Personal Attention & Home Service</h3>
+                        <p>For residential massages, villas, or private inquiries:</p>
+                        <!-- CORRECTED UNIFIED WHATSAPP ENGLISH LINK -->
+                        <a href="https://api.whatsapp.com/send/?phone=34722775959&text=I+would+like+to+book+a+massage%2C+my+name+is&type=phone_number&app_absent=0">722 77 59 59</a>
+                    </div>
+
+                    <div class="info-channel">
+                        <h3>Hotels & Corporate Area</h3>
+                        <p>Priority attention for commercial directors, Spas, and outsourcing:</p>
+                        <!-- CORRECTED UNIFIED WHATSAPP ENGLISH LINK -->
+                        <a href="https://api.whatsapp.com/send/?phone=34722775959&text=I+would+like+to+book+a+massage%2C+my+name+is&type=phone_number&app_absent=0" target="_blank">722 77 59 59</a>
+                    </div>
+                    
+                    <div class="info-channel">
+                        <h3>Email Address</h3>
+                        <p>Write to us for any corporate proposal or information request:</p>
+                        <a href="mailto:justmassagelanzarote@gmail.com" style="font-size: 0.95rem;">justmassagelanzarote@gmail.com</a>
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: DECORATIVE (SCHEDULE & FAQS TO FILL SPACE) -->
+                <div class="contact-decor-block">
+                    <div class="decor-title">Booking Hours</div>
+                    <div class="schedule-row">
+                        <span>Monday to Sunday</span>
+                        <strong>Uninterrupted</strong>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 25px;">* We recommend requesting services in advance to ensure therapist availability.</p>
+
+                    <div class="decor-title" style="margin-top: 10px;">Frequently Asked Questions</div>
+                    <div class="faq-mini">
+                        <div class="faq-item">
+                            <h4>What does the home service include?</h4>
+                            <p>We transport everything needed: massage table, towels, music, and organic warm oils.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>How do you manage hotel services?</h4>
+                            <p>We operate as an external partner, taking full and flexible responsibility for treatment management.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3. LOCATION MAP -->
+            <div class="map-section animate-fade-up delay-2">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111582.46325988586!2d-13.670154849999998!3d28.92955365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc47e2ef3071871d%3A0x673a9686df049f5!2sLanzarote!5e0!3m2!1ses!2ses!4v1718451000000!5m2!1ses!2ses" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 4. ENRICHED FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Just Massage</h4>
+                <p>We have spent years leading the wellness and body therapy sector in Lanzarote, working closely with the local hotel industry.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/justmassagelanzarote/" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/justmassagelanzarote/?locale=es_ES" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Direct Contact</h4>
+                <!-- CORRECTED UNIFIED WHATSAPP ENGLISH LINK -->
+                <p><strong>Contact Number:</strong> <a href="https://api.whatsapp.com/send/?phone=34722775959&text=I+would+like+to+book+a+massage%2C+my+name+is&type=phone_number&app_absent=0">722 77 59 59</a></p>
+                <p><strong>Email:</strong> <a href="mailto:justmassagelanzarote@gmail.com">justmassagelanzarote@gmail.com</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Useful Links</h4>
+                <p><a href="https://share.google/bHoMtFAOHpT6v0LFh" target="_blank">📍 Google Reviews</a></p>
+                <!-- CORRECTED INTERNAL SUBPAGE ENGLISH LINKS -->
+                <p><a href="https://sites.google.com/view/justmassagelanzarote/english/spa" target="_blank">💆 Spa Services</a></p>
+                <p><a href="https://sites.google.com/view/justmassagelanzarote/english/at-home" target="_blank">🚗 At Home Massages</a></p>
+                <p><a href="https://sites.google.com/view/justmassagelanzarote/english/partnerships" target="_blank">🏢 Hotel Agreements</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; Just Massage Lanzarote. All rights reserved.
+        </div>
+        <div class="footer-bottom">
+            <a href="https://proyectoscel.com/proyecto-digitalizacion/" target="_blank" class="link-cel">Website powered by CEL</a>
+        </div>
+    </footer>
+
+</body>
+</html>

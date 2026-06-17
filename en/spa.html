@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Massage Lanzarote - Spa Centers & Hotels</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        /* Color variables based on image and brand */
+        :root {
+            --color-primary: #d28b52;      /* Sand / Warm Gold */
+            --color-primary-dark: #b8733a; /* Deep Gold */
+            --color-bg-light: #faf6f0;     /* Soft Cream Background */
+            --color-bg-accent: #fceae6;    /* Salmon / Soft Pink Pastel */
+            --color-text-dark: #4a4341;    /* Dark Organic Gray */
+            --color-text-muted: #7a706e;   /* Soft Gray */
+            --color-white: #ffffff;
+            --font-main: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulseSlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Base Structure and Sections */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--color-text-dark);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* 1. HERO (MAIN BANNER REFOCUSED ON SPA) */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 450px;
+            background: linear-gradient(rgba(40, 35, 33, 0.45), rgba(40, 35, 33, 0.3)), 
+                        url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 2.5rem;
+            color: var(--color-bg-accent);
+            margin-top: 10px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+        }
+
+        /* 2. MAIN CONVERSION BUTTON (SPA WHATSAPP) */
+        .main-routes {
+            display: flex;
+            justify-content: center;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            padding-top: 0;
+        }
+
+        .btn-whatsapp-spa {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #25D366; /* Official WhatsApp Green */
+            color: var(--color-white);
+            padding: 18px 38px;
+            border-radius: 50px;
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .btn-whatsapp-spa:hover {
+            background-color: #20ba5a;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.45);
+        }
+
+        .btn-whatsapp-spa svg {
+            width: 26px;
+            height: 26px;
+            fill: var(--color-white);
+        }
+
+        /* 3. PRESENTATION SECTION */
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            font-size: 1.15rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* 4. FEATURED BLOCK / EXPERIENCE PROMO */
+        .promo-block {
+            background-color: var(--color-bg-accent);
+            border-radius: 16px;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 40px auto;
+            box-shadow: inset 0 0 40px rgba(210, 139, 82, 0.03);
+        }
+
+        .promo-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--color-text-dark);
+            margin-bottom: 10px;
+        }
+
+        .promo-badge {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            animation: pulseSlow 3s infinite ease-in-out;
+        }
+
+        .promo-desc {
+            max-width: 750px;
+            margin: 0 auto;
+            color: var(--color-text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* 5. FACILITIES AND TREATMENTS SECTION (GRID) */
+        .hotels-section {
+            background-color: var(--color-white);
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin: 40px auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .hotel-feature {
+            background: var(--color-bg-light);
+            padding: 25px 20px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .hotel-feature:hover {
+            transform: scale(1.03);
+        }
+
+        .hotel-feature h4 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .hotel-feature p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .hotel-cta {
+            margin-top: 35px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--color-text-dark);
+            color: var(--color-white);
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .hotel-cta:hover {
+            background-color: var(--color-primary);
+        }
+
+        /* 6. PIE DE PÁGINA (FOOTER) ENRIQUECIDO */
+        footer {
+            background-color: #2e2928;
+            color: #d1c7c5;
+            padding: 50px 20px 20px 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid #4a4341;
+            padding-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--color-white);
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col a {
+            color: #d1c7c5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a svg {
+            width: 24px;
+            height: 24px;
+            fill: #d1c7c5;
+            transition: fill 0.3s;
+        }
+
+        .social-links a:hover svg {
+            fill: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #8c817f;
+        }
+
+        .link-cel {
+            color: #8c817f !important;
+            text-decoration: none !important;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .link-cel:hover {
+            color: var(--color-primary) !important;
+        }
+
+        /* Adaptabilidad Móvil Extrema */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; letter-spacing: 2px; }
+            .hero-subtitle { font-size: 1.6rem; }
+            .hero { height: 50vh; }
+            .main-routes { margin-top: -30px; padding: 0 15px; width: 100%; }
+            .btn-whatsapp-spa { width: 100%; text-align: center; justify-content: center; font-size: 0.95rem; padding: 15px 20px; }
+            .section-title { font-size: 1.8rem; }
+            .hotels-section { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero animate-fade-in">
+        <div class="hero-content">
+            <h1 class="hero-title">Spa Spaces</h1>
+            <div class="hero-subtitle">Premium Facilities</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
+        
+        <!-- 2. INTERACTIVE WHATSAPP BUTTON WITH UNIFIED ENGLISH MESSAGE -->
+        <section class="main-routes animate-fade-up delay-1">
+            <a href="https://api.whatsapp.com/send/?phone=34722775959&text=I+would+like+to+book+a+massage%2C+my+name+is&type=phone_number&app_absent=0" target="_blank" class="btn-whatsapp-spa">
+                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-3.411l.413.245c1.562.928 3.361 1.417 5.203 1.418 5.541 0 10.049-4.506 10.052-10.051.002-2.686-1.043-5.212-2.94-7.115-1.897-1.896-4.422-2.938-7.11-2.939-5.544 0-10.05 4.51-10.054 10.055-.002 1.817.489 3.593 1.42 5.168l.271.455-.998 3.648 3.733-.979zM15.71 14.1c-.26-.13-1.532-.756-1.77-.842-.23-.087-.397-.13-.564.13-.166.26-.644.823-.79 1-.144.166-.29.184-.55.054-1.03-.516-1.74-.857-2.424-2.028-.287-.493.287-.458.82-.147.166.098.32.184.42.24.11.06.18.11.26.25.09.14.04.54-.06.74-.1.2-.44.89-.63 1.1-.18.2-.38.22-.64.09-.26-.13-1.1-.405-2.1-1.298-.775-.69-1.3-1.544-1.453-1.805-.153-.26-.015-.4.116-.53.12-.116.26-.3.39-.45.04-.06.09-.1.13-.17.04-.07.06-.13.1-.21.04-.08.02-.15-.01-.22-.03-.07-.397-.96-.545-1.32-.143-.347-.29-.3-.396-.306-.1-.004-.218-.005-.335-.005-.12 0-.313.044-.477.22-.164.18-.63.614-.63 1.5s.644 1.74.734 1.86c.09.12 1.268 1.937 3.073 2.716.43.185.764.296 1.026.38.432.137.825.118 1.135.07.346-.053 1.532-.627 1.748-1.233.217-.607.217-1.127.152-1.233-.064-.1-.23-.17-.49-.3z"/></svg>
+                <span>I would like to book a massage, my name is</span>
+            </a>
+        </section>
+
+        <!-- 3. EXPERIENCE PRESENTATION -->
+        <section class="animate-fade-up delay-2">
+            <h2 class="section-title">World-Class Facilities</h2>
+            <div class="section-subtitle">Exclusive Treatments</div>
+            <p class="intro-text">
+                Our Spa services are designed to immerse you in an atmosphere of absolute relaxation within the best hotel and wellness complexes in Lanzarote. We combine Eastern and Western techniques, using organic essential oils to revitalize your body and calm your mind.
+            </p>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://drive.google.com/file/d/1PzykLyQvWITN3LdxJfBXH9WwyiMpMoQy/view?usp=sharing" target="_blank" class="hotel-cta" style="margin-top: 0; background-color: var(--color-primary); display: inline-flex; align-items: center; gap: 8px;">
+                    <span>View Massage Menu & Prices (PDF)</span>
+                    <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 11h4V16h5.33v-5h4L12 2z"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- 4. EXPERIENCE PROMO BLOCK -->
+        <section class="promo-block">
+            <div class="promo-badge">Book your spot</div>
+            <h3 class="promo-title">Luxury Relaxation Experience</h3>
+            <p class="promo-desc">
+                All our services in partner centers meet the most demanding international wellness standards. You can check hourly availability or schedule your couples sessions by contacting us directly through our priority WhatsApp channel.
+            </p>
+        </section>
+
+        <!-- 5. TREATMENT BENEFITS -->
+        <section class="hotels-section">
+            <h2 class="section-title">What Do Our Spa Rituals Include?</h2>
+            <div class="section-subtitle">Maximum Quality Guaranteed</div>
+            
+            <div class="hotels-grid">
+                <div class="hotel-feature">
+                    <h4>Balanced Atmosphere</h4>
+                    <p>Ambient music, customized aromatherapy, and optimal temperature control.</p>
+                </div>
+                <div class="hotel-feature">
+                    <h4>Expert Therapists</h4>
+                    <p>Highly trained staff in sports, relaxing massages, and holistic rituals.</p>
+                </div>
+                <div class="hotel-feature">
+                    <h4>Organic Range</h4>
+                    <p>Use of premium oils, creams, and balms that respect your skin to the fullest.</p>
+                </div>
+            </div>
+
+            <!-- CORRECTED INTERNAL SUBPAGE ROUTE -->
+            <a href="https://sites.google.com/view/justmassagelanzarote/english/partnerships" class="hotel-cta">
+                <span>Are you a hotel? Visit the Professional Area</span>
+                <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- 6. FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Just Massage</h4>
+                <p>We have spent years leading the wellness and body therapy sector in Lanzarote, working closely with the local hotel industry.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/justmassagelanzarote/" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85 .07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/justmassagelanzarote/?locale=es_ES" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Direct Contact</h4>
+                <!-- UNIFIED ENGLISH WHATSAPP TEXT LINK -->
+                <p><strong>Contact Number:</strong> <a href="https://api.whatsapp.com/send/?phone=34722775959&text=I+would+like+to+book+a+massage%2C+my+name+is&type=phone_number&app_absent=0">722 77 59 59</a></p>
+                <p><strong>Email:</strong> <a href="mailto:justmassagelanzarote@gmail.com">justmassagelanzarote@gmail.com</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Useful Links</h4>
+                <p><a href="https://share.google/bHoMtFAOHpT6v0LFh" target="_blank">📍 Google Reviews</a></p>
+                <p><a href="https://sites.google.com/view/justmassagelanzarote/english/at-home" target="_blank">🚗 At Home Massages</a></p>
+                <p><a href="https://sites.google.com/view/justmassagelanzarote/english/partnerships" target="_blank">🏢 Hotel Agreements</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; Just Massage Lanzarote. All rights reserved.
+        </div>
+        <div class="footer-bottom">
+            <a href="https://proyectoscel.com/proyecto-digitalizacion/" target="_blank" class="link-cel">Website powered by CEL</a>
+        </div>
+    </footer>
+
+</body>
+</html>
